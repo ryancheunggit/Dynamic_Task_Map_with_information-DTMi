@@ -1,0 +1,83 @@
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="utf-8"></meta>
+<title>Dynamic Transaction Map</title>
+<!-- <script type="text/javascript" src="../d3/d3.js"></script> -->
+<script src="http://d3js.org/d3.v3.min.js" charset="utf-8"></script>
+<style type="text/css">
+html, body {
+	/*hide scroll bars*/
+  overflow-y:hidden;
+  overflow-x:hidden;
+  height:100%;
+}
+svg {
+	display: inline-block;
+    border:1px solid black;
+    overflow:scroll;
+}
+div {
+	display: inline-block;
+}
+</style>
+</head>
+<body>
+<div>
+	<div>
+		<!--search() function is defined in Search.js-->
+		Search for:  <input type="text" name="search" onkeydown="search(this)" ><br>
+	</div>
+	<div>
+		<p id="numberFound">No search Executed</p>
+	</div>
+	<div>
+		<button type="button" onclick="next()">Next</button>
+	</div>
+	<div>
+		<p id="textLegend"></p>
+	</div>
+</div>
+<p id="prompt">No transaction selected</p>
+<!-- /* include a data definition file;
+	defines *var dataset*
+
+Same as ModifiedForceExample, but
+Based on alternative transaction TCODE values to distinguish from SAP
+Decoding to SAP is done via ComposeJasonRecoded.java method decodeTcode.
+     */ -->
+<!--transdataRECODEDModuleDummyUserInfo.js create a data object called dataset which is ensentially a json
+	object contain two lists:
+	+ one list called nodes which contain an array of node informations
+	+ the other list called edges which contain an array of edge informations
+-->
+<script type="text/javascript" src="transdataRECODEDModuleDummyUserInfo.js"></script>
+<!--Search.js implements the seach function,
+	will simulate a click on the first node from search results
+	also the next button is handled here, when the next button is clicked, will simulate a click on
+	the next node from the search results
+-->
+<script type="text/javascript" src="Search.js"></script>
+<!--this code calculate the cluster sizes and determine what cluster to center at what position-->
+<script type="text/javascript" src="FociSetup.js"></script>
+<!--this code setup the constants, scales, binding dataset and force layouts and ontick behavior,
+	only the edges been drawn here.
+	node collision handling is currently turned off here.
+	the zooming handler also included here now-->
+<script type="text/javascript" src="InitDiagram.js"></script>
+<!--this code add colored text indicating the color and module short name mappings-->
+<script type="text/javascript" src="Legend.js"></script>
+<!--this code implements the function to draw and sort the information table on the right panel-->
+<script type="text/javascript" src="InfoTableHelper.js"></script>
+<!--draw nodes, labels and convex hulls,
+	handle on mouse over behavior for nodes
+	handle mouse click behvaior
+	handle label overlapping
+-->
+<script type="text/javascript" src="NodesCode.js"></script>
+<!--zoom in at perticular position and zoom level at the begining-->
+<script type="text/javascript" src="MyZoom.js"></script>
+
+</body>
+</html>
